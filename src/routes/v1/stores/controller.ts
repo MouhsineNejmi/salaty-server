@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import EntityNotFoundError from '../../../errors/EntityNotFoundError';
+import Store from '@/models/store.model';
 
-export const listStores = (req: Request, res: Response) => {
-  throw new EntityNotFoundError({
-    message: 'No Stores Found!',
+export const listStores = async (req: Request, res: Response) => {
+  const stores = await Store.find({
+    auth0Id: req.auth?.payload.sub,
   });
-  res.status(200).json([]);
+  res.status(200).json({ stores });
 };

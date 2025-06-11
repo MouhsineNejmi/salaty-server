@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 import { listStores } from './controller';
-import authenticateUser from '../../../middlewares/authenticate-user.middleware';
+import authenticateUser from '@/middlewares/authenticate-user.middleware';
 
 const stores: Router = express.Router();
 

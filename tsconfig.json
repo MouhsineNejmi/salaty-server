@@ -30,9 +30,9 @@
     "typeRoots": ["./node_modules/@types", "./src/types"],
     "rootDir": "./src",
     "moduleResolution": "node",
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "*": ["*"]
+      "@/*": ["src/*"]
     },
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */

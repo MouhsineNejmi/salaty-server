@@ -1,7 +1,8 @@
+import 'module-alias/register';
 import dotenv from 'dotenv';
-import { createServer } from './server';
-import config from './config';
-import connectDB from './utils/db';
+import { createServer } from '@/server';
+import config from '@/config';
+import connectDB from '@/utils/db';
 
 dotenv.config();
 
