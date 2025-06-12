@@ -3,7 +3,7 @@ import { StoreDoc } from '@/models/store.model';
 import { storeRepository } from './repository';
 
 export class StoreService {
-  async getStoreByUserId(id: string): Promise<StoreDoc | null> {
+  async getStoreByUserId(id: string): Promise<StoreDoc[] | null> {
     return await storeRepository.findByUserId(id);
   }
 }
