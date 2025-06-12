@@ -6,7 +6,7 @@ import Store from './models/store.model';
 dotenv.config();
 
 const seedUser = {
-  auth0Id: 'google-oauth2|105455038665731688388',
+  id: 'google-oauth2|105455038665731688388',
   firstName: 'test',
   lastName: 'user',
   email: 'test@test.com',
@@ -24,12 +24,12 @@ async function seedDatabase() {
     const seedStores = [
       {
         name: 'Shop 1',
-        auth0Id: seedUser.auth0Id,
+        userId: '684ace4f62a64db1d319e11a',
         isActive: true,
       },
       {
         name: 'Shop 2',
-        auth0Id: seedUser.auth0Id,
+        userId: '684ace4f62a64db1d319e11a',
         isActive: true,
       },
     ];

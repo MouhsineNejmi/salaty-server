@@ -3,7 +3,7 @@ import config from '@/config';
 import { getErrorMessage } from '@/utils';
 
 import CustomError from '@/errors/CustomError';
-import { UnauthorizedError } from 'express-oauth2-jwt-bearer';
+import UnauthorizedError from '@/errors/AuthenticationError';
 
 const errorHandler = (
   error: unknown,
@@ -32,7 +32,7 @@ const errorHandler = (
       error: {
         message: error.message,
         statusCode: error.statusCode,
-        code: 'code' in error ? error.code : 'ERR_AUTH',
+        code: error.code,
       },
     });
     return;

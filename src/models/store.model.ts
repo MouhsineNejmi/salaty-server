@@ -1,14 +1,14 @@
 import mongoose, { Schema, Model, Document, Types } from 'mongoose';
 
-interface StoreAttrs {
+export interface StoreAttrs {
   name: string;
-  auth0Id: string;
+  userId: string;
   isActive?: boolean;
 }
 
-interface StoreDoc extends Document {
+export interface StoreDoc extends Document {
   name: string;
-  auth0Id: string;
+  userId: string;
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -25,9 +25,9 @@ const storeSchema = new Schema(
       trim: true,
       required: [true, 'Store Name is required'],
     },
-    auth0Id: {
-      type: String,
-      required: [true, 'UserId is required'],
+    userId: {
+      type: Types.ObjectId,
+      ref: 'User',
     },
     isActive: {
       type: Boolean,

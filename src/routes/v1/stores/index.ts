@@ -1,10 +1,10 @@
 import express, { Router } from 'express';
-import { listStores } from './controller';
+import { storeController } from './controller';
 import authenticateUser from '@/middlewares/authenticate-user.middleware';
 
 const stores: Router = express.Router();
 
 stores.use(authenticateUser);
-stores.get('/', listStores);
+stores.get('/', storeController.listStoresByAuth0Id);
 
 export default stores;
