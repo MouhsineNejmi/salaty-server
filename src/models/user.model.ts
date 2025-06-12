@@ -1,12 +1,13 @@
 import mongoose, { Schema, Model, Document } from 'mongoose';
 
 export interface UserAttrs {
+  username: string;
   email: string;
   password: string;
-  auth0Id?: string;
 }
 
 export interface UserDoc extends Document {
+  username: string;
   email: string;
   password: string;
   createdAt: Date;
