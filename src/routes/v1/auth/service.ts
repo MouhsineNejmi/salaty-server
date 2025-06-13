@@ -11,7 +11,7 @@ import ValidationError from '@/errors/ValidationError';
 import EntityNotFoundError from '@/errors/EntityNotFoundError';
 
 interface AuthResponse {
-  user: UserDoc;
+  user: Omit<UserDoc, 'password'>;
   accessToken?: string;
   refreshToken?: string;
 }
@@ -49,7 +49,7 @@ export class AuthService {
       password: hashedPassword,
     });
 
-    return { user };
+    return { user: user as Omit<UserDoc, 'password'> };
   }
 
   async login(attrs: LoginDTO): Promise<AuthResponse> {
@@ -68,7 +68,11 @@ export class AuthService {
 
     const updateUser = await usersRepository.update(user.id, { refreshToken });
 
-    return { user: updateUser, accessToken, refreshToken };
+    return {
+      user: updateUser as Omit<UserDoc, 'password'>,
+      accessToken,
+      refreshToken,
+    };
   }
 
   async refresh(refreshToken: string): Promise<RefreshAuthResponse> {
