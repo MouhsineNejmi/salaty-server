@@ -4,12 +4,14 @@ export interface UserAttrs {
   username: string;
   email: string;
   password: string;
+  refreshToken?: string | null;
 }
 
 export interface UserDoc extends Document {
   username: string;
   email: string;
   password: string;
+  refreshToken?: string | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -33,6 +35,10 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: [true, 'Password is required'],
+    },
+    refreshToken: {
+      type: String,
+      default: null,
     },
   },
   {
