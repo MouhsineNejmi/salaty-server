@@ -1,13 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
-import { Types } from 'mongoose';
+import jwt, { JwtPayload } from 'jsonwebtoken';
+
 import config from '@/config';
 import { usersRepository } from '@/routes/v1/users/repository';
 import AuthenticationError from '@/errors/AuthenticationError';
-
-interface JwtPayload {
-  id: Types.ObjectId;
-}
+import EntityNotFoundError from '@/errors/EntityNotFoundError';
 
 const authenticateUser = async (
   req: Request,
@@ -17,28 +14,34 @@ const authenticateUser = async (
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     throw new AuthenticationError({
-      message: 'Authorization header missing or malformed',
-      statusCode: 401,
+      message: 'Missing or invalid authorization header',
     });
   }
 
-  const token = authHeader.split(' ')[1];
+  const accessToken = authHeader.split(' ')[1];
+
   try {
-    const decoded = jwt.verify(token, config.appSecret) as JwtPayload;
+    const decoded = jwt.verify(accessToken, config.jwtAccessSecret) as {
+      id: string;
+    };
+
     const user = await usersRepository.findById(decoded.id);
     if (!user)
-      throw new AuthenticationError({
+      throw new EntityNotFoundError({
         message: 'User Not Found!',
-        statusCode: 40,
+        statusCode: 401,
       });
 
-    req.auth = { payload: { sub: String(decoded.id), ...decoded }, token };
+    req.auth = {
+      payload: { sub: String(decoded.id), ...decoded },
+      accessToken,
+    };
 
     next();
   } catch (error) {
     throw new AuthenticationError({
-      message: 'You are allowed to perform this action',
-      statusCode: 403,
+      message: 'Unauthorized! You are allowed to perform this action',
+      statusCode: 401,
     });
   }
 };

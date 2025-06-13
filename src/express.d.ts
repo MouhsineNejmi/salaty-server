@@ -6,7 +6,7 @@ declare global {
     interface Request {
       auth?: {
         payload: JwtPayload;
-        token: string;
+        accessToken: string;
       };
     }
   }
