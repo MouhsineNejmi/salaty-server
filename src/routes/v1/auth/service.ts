@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import jwt, { JwtPayload, SignOptions } from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 import config from '@/config';
 import { usersRepository } from '../users/repository';
