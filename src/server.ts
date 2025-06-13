@@ -20,7 +20,7 @@ export const createServer = () => {
         validate: { positiveHits: false },
       })
     )
-    .use(cors({ origin: '*', credentials: true }));
+    .use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
   app.get('/health', (req: Request, res: Response) => {
     res.json({ ok: true, environment: config.env });
