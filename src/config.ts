@@ -6,8 +6,6 @@ const config = {
   jwtRefreshSecret: process.env.JWT_REFRESH_SECRET || '',
   jwtAccessSecretExpiresIn: process.env.JWT_ACCESS_SECRET_EXPIRES_IN || '15m',
   jwtRefreshSecretExpiresIn: process.env.JWT_REFRESH_SECRET_EXPIRES_IN || '30d',
-  issuerBaseUrl: process.env.AUTH0_ISSUER_BASE_URL || '',
-  audience: process.env.AUTH0_AUDIENCE || '',
 };
 
 export default config;
