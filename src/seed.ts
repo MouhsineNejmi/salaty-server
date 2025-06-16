@@ -6,7 +6,6 @@ import Store from './models/store.model';
 dotenv.config();
 
 const seedUser = {
-  id: 'google-oauth2|105455038665731688388',
   firstName: 'test',
   lastName: 'user',
   email: 'test@test.com',

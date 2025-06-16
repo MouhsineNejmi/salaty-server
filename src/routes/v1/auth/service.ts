@@ -24,6 +24,7 @@ interface RefreshAuthResponse {
 export class AuthService {
   signAccessToken = (userId: string): string => {
     return jwt.sign({ id: userId }, config.jwtAccessSecret, {
+      algorithm: 'HS256',
       expiresIn:
         config.jwtAccessSecretExpiresIn as jwt.SignOptions['expiresIn'],
     });
@@ -31,6 +32,7 @@ export class AuthService {
 
   signRefreshToken = (userId: string): string => {
     return jwt.sign({ id: userId }, config.jwtRefreshSecret, {
+      algorithm: 'HS256',
       expiresIn:
         config.jwtRefreshSecretExpiresIn as jwt.SignOptions['expiresIn'],
     });

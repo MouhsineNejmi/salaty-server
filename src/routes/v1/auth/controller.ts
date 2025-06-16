@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-import jwt, { JwtPayload } from 'jsonwebtoken';
 import { authService } from './service';
 
 export class AuthController {
