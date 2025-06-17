@@ -23,11 +23,9 @@ export class AuthController {
   async refresh(req: Request, res: Response, next: NextFunction) {
     try {
       const { refreshToken } = req.body;
-      const { accessToken, newRefreshToken } = await authService.refresh(
-        refreshToken
-      );
+      const { accessToken } = await authService.refresh(refreshToken);
 
-      res.json({ accessToken, refreshToken: newRefreshToken });
+      res.json({ accessToken });
     } catch (error) {
       next(error);
     }

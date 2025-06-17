@@ -12,6 +12,7 @@ router.post('/login', validate(loginSchema), authController.login);
 
 router.post('/refresh', authController.refresh);
 router.post('/logout', authController.logout);
+
 router.use(authenticateUser);
 router.get('/me', authController.getMe);
 

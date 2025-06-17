@@ -18,7 +18,6 @@ interface AuthResponse {
 
 interface RefreshAuthResponse {
   accessToken: string;
-  newRefreshToken: string;
 }
 
 export class AuthService {
@@ -92,11 +91,8 @@ export class AuthService {
     }
 
     const accessToken = this.signAccessToken(user.id);
-    const newRefreshToken = this.signRefreshToken(user.id);
 
-    await usersRepository.update(user.id, { refreshToken: newRefreshToken });
-
-    return { accessToken, newRefreshToken };
+    return { accessToken };
   }
 
   async logout(userId: string): Promise<void> {
