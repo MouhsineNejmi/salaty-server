@@ -23,7 +23,7 @@ interface UserModel extends Model<UserDoc> {
 
 const userSchema = new Schema(
   {
-    avatart: {
+    avatar: {
       type: String,
       default: 'https://github.com/shadcn.png',
     },
