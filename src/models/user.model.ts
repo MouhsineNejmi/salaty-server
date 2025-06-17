@@ -8,6 +8,7 @@ export interface UserAttrs {
 }
 
 export interface UserDoc extends Document {
+  avatar: string;
   username: string;
   email: string;
   password: string;
@@ -22,6 +23,10 @@ interface UserModel extends Model<UserDoc> {
 
 const userSchema = new Schema(
   {
+    avatart: {
+      type: String,
+      default: 'https://github.com/shadcn.png',
+    },
     username: {
       type: String,
       required: [true, 'Username is required'],
