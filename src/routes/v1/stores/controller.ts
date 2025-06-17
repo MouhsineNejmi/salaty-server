@@ -4,7 +4,7 @@ import EntityNotFoundError from '@/errors/EntityNotFoundError';
 import { storeService } from './service';
 
 export class StoreController {
-  async listStoresByAuth0Id(req: Request, res: Response, next: NextFunction) {
+  async listStoresByUserId(req: Request, res: Response, next: NextFunction) {
     try {
       const stores = await storeService.getStoreByUserId(
         req.auth?.payload.sub!
